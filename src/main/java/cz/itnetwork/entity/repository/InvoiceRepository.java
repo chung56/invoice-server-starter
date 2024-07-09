@@ -4,7 +4,7 @@ import cz.itnetwork.entity.InvoiceEntity;
 import cz.itnetwork.entity.filter.InvoiceFilter;
 import java.time.LocalDate;
 import java.util.List;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -27,5 +27,5 @@ public interface InvoiceRepository extends JpaRepository<InvoiceEntity, Long> {
       "AND (:#{#filter.getMinPrice()} = -1 OR i.price >= :#{#filter.getMinPrice()}) " +
       "AND (:#{#filter.getMaxPrice()} = -1 OR i.price <= :#{#filter.getMaxPrice()}) "
   )
-  List<InvoiceEntity> getFilteredInvoices(InvoiceFilter filter, PageRequest pageable);
+  List<InvoiceEntity> getFilteredInvoices(InvoiceFilter filter, Pageable pageable);
 }
