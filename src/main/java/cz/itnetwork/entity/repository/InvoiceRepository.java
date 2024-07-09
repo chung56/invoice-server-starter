@@ -23,7 +23,7 @@ public interface InvoiceRepository extends JpaRepository<InvoiceEntity, Long> {
   @Query("SELECT i FROM invoice i " +
       "WHERE (:#{#filter.getBuyerID()} = -1 OR i.buyer.id = :#{#filter.getBuyerID()}) " +
       "AND (:#{#filter.getSellerID()} = -1 OR i.seller.id = :#{#filter.getSellerID()})  " +
-      "AND (:#{#filter.getProduct()} = '' OR i.product = :#{#filter.getProduct()}) " +
+      "AND (:#{#filter.getProduct()} = '' OR LOWER(i.product) LIKE CONCAT('%',LOWER(:#{#filter.getProduct()}),'%')) " +
       "AND (:#{#filter.getMinPrice()} = -1 OR i.price >= :#{#filter.getMinPrice()}) " +
       "AND (:#{#filter.getMaxPrice()} = -1 OR i.price <= :#{#filter.getMaxPrice()}) "
   )
