@@ -2,7 +2,6 @@ package cz.itnetwork.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import cz.itnetwork.constant.Countries;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

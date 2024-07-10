@@ -1,7 +1,6 @@
 package cz.itnetwork.entity.repository;
 
 import cz.itnetwork.dto.PersonStatisticsDTO;
-import cz.itnetwork.entity.InvoiceEntity;
 import cz.itnetwork.entity.PersonEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
