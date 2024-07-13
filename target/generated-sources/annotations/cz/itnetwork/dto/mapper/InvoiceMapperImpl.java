@@ -22,9 +22,7 @@ public class InvoiceMapperImpl implements InvoiceMapper {
 
         InvoiceEntity invoiceEntity = new InvoiceEntity();
 
-        if ( source.getId() != null ) {
-            invoiceEntity.setId( source.getId() );
-        }
+        invoiceEntity.setId( source.getId() );
         invoiceEntity.setInvoiceNumber( source.getInvoiceNumber() );
         invoiceEntity.setIssued( source.getIssued() );
         invoiceEntity.setDueDate( source.getDueDate() );
@@ -67,9 +65,7 @@ public class InvoiceMapperImpl implements InvoiceMapper {
 
         PersonEntity personEntity = new PersonEntity();
 
-        if ( personDTO.getId() != null ) {
-            personEntity.setId( personDTO.getId() );
-        }
+        personEntity.setId( personDTO.getId() );
         personEntity.setName( personDTO.getName() );
         personEntity.setIdentificationNumber( personDTO.getIdentificationNumber() );
         personEntity.setTaxNumber( personDTO.getTaxNumber() );

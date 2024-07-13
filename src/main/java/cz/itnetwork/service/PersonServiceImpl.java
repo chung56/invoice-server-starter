@@ -45,7 +45,6 @@ public class PersonServiceImpl implements PersonService {
     try {
       PersonEntity person = fetchPersonById(personId);
       person.setHidden(true);
-
       personRepository.save(person);
     } catch (NotFoundException ignored) {
       // The contract in the interface states, that no exception is thrown, if the entity is not found.
@@ -72,9 +71,13 @@ public class PersonServiceImpl implements PersonService {
     if (!personRepository.existsById(personId)) {
       throw new EntityNotFoundException("Person with id " + personId + " wasn't found in the database.");
     }
-    PersonEntity entity = personMapper.toEntity(personDTO);
-    entity.setId(personId);
-    PersonEntity saved = personRepository.save(entity);
+    PersonEntity oldPerson = fetchPersonById(personId);
+    oldPerson.setHidden(true);
+    personRepository.save(oldPerson);
+
+    PersonEntity newPerson = personMapper.toEntity(personDTO);
+    newPerson.setId(null);
+    PersonEntity saved = personRepository.save(newPerson);
     return personMapper.toDTO(saved);
   }
 

@@ -94,6 +94,4 @@ public class InvoiceServiceImpl implements InvoiceService {
     PersonEntity buyer = personRepository.getReferenceById(invoiceDTO.getBuyer().getId());
     invoice.setBuyer(buyer);
   }
-
-
 }

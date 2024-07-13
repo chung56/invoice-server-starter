@@ -17,7 +17,7 @@ public class UserEntity implements UserDetails {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long userId;
+  private Long userId;
 
   @Column(nullable = false, unique = true)
   private String email;

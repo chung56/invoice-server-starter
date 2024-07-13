@@ -14,6 +14,7 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
   @Query("SELECT NEW cz.itnetwork.dto.PersonStatisticsDTO(p.id, p.name, COALESCE(SUM(i.price), 0.0)) "
       + "FROM person p "
       + "LEFT JOIN invoice i ON p.id = i.seller.id "
+      + "WHERE p.hidden = false "
       + "GROUP BY p.id")
   List<PersonStatisticsDTO> findPersonStatistics();
 }
