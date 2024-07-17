@@ -30,6 +30,10 @@ public class InvoiceServiceImpl implements InvoiceService {
 
   @Override
   public InvoiceDTO addInvoice(InvoiceDTO invoiceDTO) {
+    if (isPersonHidden(invoiceDTO.getBuyer().getId()) || isPersonHidden(invoiceDTO.getSeller().getId())) {
+      throw new RuntimeException("Can not create Invoice with non existent person");
+    }
+
     InvoiceEntity invoice = invoiceMapper.toEntity(invoiceDTO);
     mapPersonToInvoice(invoice, invoiceDTO);
     InvoiceEntity saved = invoiceRepository.save(invoice);
@@ -93,5 +97,10 @@ public class InvoiceServiceImpl implements InvoiceService {
     // Map buyer to invoice
     PersonEntity buyer = personRepository.getReferenceById(invoiceDTO.getBuyer().getId());
     invoice.setBuyer(buyer);
+  }
+
+  private boolean isPersonHidden(Long personId) {
+    PersonEntity personEntity = personRepository.getReferenceById(personId);
+    return personEntity.isHidden();
   }
 }
